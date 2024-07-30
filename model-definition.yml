@@ -1,0 +1,69 @@
+kind: M
+api_version: v1beta3
+metadata:
+  display_name: Global_Urban_Flooding:Storm Event Curve
+  contact_point_name: Olivia Butters
+  contact_point_email: olivia.butters@newcastle.ac.uk
+  name: global-rainfall-curve
+  publisher: Newcastle University
+  summary: > 
+    This model generates a text file to be used as an input to the City Cat model detailing the storm event.
+  source_code: https://github.com/OpenCLIM/global-storm-event-curve
+  description: >
+    This model takes the unit profile of a storm event and adapts it to reflect an event based on storm duration and the total depth of rainfall.
+spec:
+  inputs:
+    parameters:
+      - name: NAME
+        title: Run name
+        type: string
+        description: Name for the run, used in the title field of the metadata file.
+        default: Storm Profile
+        required: true
+        
+      - name: TOTAL_DEPTH
+        title: Total depth (mm)
+        description:
+          The total depth of rainfall during the event.
+        type: number
+        default: 40
+        required: false
+        min: 10
+        max: 100
+
+      - name: DURATION
+        title: Duration (hours)
+        description:
+          The duration of the rainfall event.
+        type: string
+        default: '1'
+        required: true
+        options:
+          - name: '1'
+            title: '1'
+          - name: '3'
+            title: '3'
+          - name: '6'
+            title: '6'
+          - name: '12'
+            title: '12'
+          - name: '24'
+            title: '24'
+   
+    dataslots:
+      - name: Parameters
+        description:
+          All input parameters and their values are stored in a csv file.
+        path: inputs/parameters/
+        required: false
+          
+  outputs:
+    datasets:
+      - name: outputs/data/
+        type: folder
+        description: path to model outputs
+
+      - name: outputs/parameters/*
+        type: folder
+        description:
+          All parameters and their values are stored in a csv file.
