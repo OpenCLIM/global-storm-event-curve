@@ -69,5 +69,6 @@ if len(parameter_file) == 1 :
 
     # Print all of the input parameters to an excel sheet to be read in later
     with open(os.path.join(dst), 'a') as f:
+        f.write('PARAMETER,VALUE\n')
         f.write('TOTAL_DEPTH,%s\n' %rainfall_total)
         f.write('DURATION,%s\n' %duration)
