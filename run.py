@@ -54,21 +54,8 @@ with open(os.path.join(outputs_path,'rainfall_data.txt'),'a') as f:
     print(rainfall_data.to_string(header=False), file=f)
 f.close()
 
-# Move the amended parameter file to the outputs folder
-if len(parameter_file) == 1 :
-    file_path = os.path.splitext(parameter_file[0])
-    print('Filepath:',file_path)
-    filename=file_path[0].split("/")
-    print('Filename:',filename[-1])
-
-    src = parameter_file[0]
-    print('src:',src)
-    dst = os.path.join(parameter_outputs_path,filename[-1] + '.csv')
-    print('dst,dst')
-    shutil.copy(src,dst)
-
-    # Print all of the input parameters to an excel sheet to be read in later
-    with open(os.path.join(dst), 'a') as f:
-        f.write('PARAMETER,VALUE\n')
-        f.write('TOTAL_DEPTH,%s\n' %rainfall_total)
-        f.write('DURATION,%s\n' %duration)
+# Print all of the input parameters to an excel sheet to be read in later
+with open(os.path.join(parameter_outputs_path,'storm-parameters.csv'), 'a') as f:
+    f.write('PARAMETER,VALUE\n')
+    f.write('TOTAL_DEPTH,%s\n' %rainfall_total)
+    f.write('DURATION,%s\n' %duration)
