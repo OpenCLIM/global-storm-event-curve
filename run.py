@@ -39,7 +39,7 @@ rainfall_data = pd.DataFrame(list(unit_profile*rainfall_total/unit_total/1000) +
 rainfall1 = pd.DataFrame(list(unit_profile*rainfall_total/unit_total/1000) + [0, 0])
 rainfall2 = pd.DataFrame(list(rainfall_times) + [duration*3600+1, duration*3600+2])
 
-rainfall = pd.concat([rainfall1, rainfall2], axis=1)
+rainfall = pd.concat([rainfall2, rainfall1], axis=1)
 rainfall = rainfall.reset_index(drop=True)
 print('rainfall:',rainfall)
 
